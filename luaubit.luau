@@ -95,17 +95,15 @@ function luaubit.to_bits(byte_array: ByteArray): Bits
 	for i, byte in byte_array do
 		local copy = byte
 		
-		local this_bits = {} -- todo: don't do this
-		for i = 1, 8 do
+		for i = 8, 1, -1 do
 			local remainder: number = copy % 2
 			
 			local bit: number = remainder == 1 and 1 or 0
-			this_bits[i] = bit
+			bits[index] = bit
 			
 			copy //= 2
+			index += 1
 		end
-		luaubit.reverse(this_bits)
-		for i, bit in this_bits do bits[index] = bit; index += 1 end
 	end
 	
 	return bits
@@ -323,7 +321,7 @@ end
 --[[
 creates a ByteArray with the given numbers ...
 ]]
-function luaubit.from_numbers(...: number): ByteArray
+function luaubit.from_bytes(...: number): ByteArray
 	assert(..., "at least one number must be provided!")
 	
 	local bytes = {...}
