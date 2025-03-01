@@ -393,7 +393,7 @@ end
 creates a string with the given ByteArray byte_array
 will destroy byte_array if boolean trash is true
 ]]
-function luaubit.to_string(byte_array: ByteArray, trash: boolean): string
+function luaubit.to_string(byte_array: ByteArray, trash: boolean?): string
 	assert(byte_array, "byte_array must be provided!")
 	if trash then
 		assert(type(trash) == "boolean", "trash must be of type boolean!")
@@ -415,7 +415,7 @@ end
 packs ByteArray byte_array as the u32 or u64 integer it represents
 will destroy byte_array if boolean trash is true
 ]]
-function luaubit.to_number(byte_array: ByteArray, trash:boolean): number
+function luaubit.to_number(byte_array: ByteArray, trash: boolean?): number
 	assert(byte_array, "byte_array must be provided!")
 	assert(#byte_array*8 == 64 or #byte_array*8 == 32, "byte_array must be a 32 bit or 64 bit integer!")
 	if trash then
